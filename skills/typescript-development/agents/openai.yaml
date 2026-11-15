@@ -1,0 +1,3 @@
+interface:
+  display_name: "TypeScript Development"
+  short_description: "Repository-aware TypeScript implementation with strict contract and type-safety guardrails"
