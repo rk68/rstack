@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <rect x="4" y="4" width="248" height="248" rx="56" fill="#070b12" stroke="#6fb4f5" stroke-opacity="0.3" stroke-width="2"/>
+  <!-- strap over the top -->
+  <path d="M86 84 C86 44 170 44 170 84" fill="none" stroke="#8a9bb2" stroke-width="10" stroke-linecap="round"/>
+  <!-- pouch body with a rounded bottom -->
+  <path d="M56 96 C56 86 64 80 74 80 H182 C192 80 200 86 200 96 V160 C200 192 176 212 144 212 H112 C80 212 56 192 56 160 Z"
+        fill="#111b2b" stroke="#e6eef7" stroke-width="6" stroke-linejoin="round"/>
+  <!-- stitching -->
+  <path d="M70 164 C72 186 90 198 112 198 H144 C166 198 184 186 186 164" fill="none" stroke="#e6eef7" stroke-opacity="0.45" stroke-width="3" stroke-dasharray="5 7" stroke-linecap="round"/>
+  <!-- flap, curved to a point -->
+  <path d="M56 96 C56 86 64 80 74 80 H182 C192 80 200 86 200 96 V112 C200 124 170 150 128 156 C86 150 56 124 56 112 Z"
+        fill="#e6eef7"/>
+  <!-- horn spiral as the buckle -->
+  <path d="M108 128 C104 108 124 96 142 102 C158 108 160 128 148 136 C138 142 126 136 128 126 C130 118 140 118 142 124"
+        fill="none" stroke="#070b12" stroke-width="13" stroke-linecap="round"/>
+  <path d="M108 128 C104 108 124 96 142 102 C158 108 160 128 148 136 C138 142 126 136 128 126 C130 118 140 118 142 124"
+        fill="none" stroke="#5fd3e0" stroke-width="7" stroke-linecap="round"/>
+  <!-- skill cards peeking out -->
+  <g stroke-width="6" stroke-linecap="round">
+    <line x1="92" y1="178" x2="112" y2="178" stroke="#a99cf2"/>
+    <line x1="122" y1="178" x2="134" y2="178" stroke="#7fd6a8"/>
+    <line x1="144" y1="178" x2="164" y2="178" stroke="#e8c87e"/>
+  </g>
+</svg>

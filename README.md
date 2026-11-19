@@ -1,10 +1,39 @@
-# Shared skill suite
+<p align="center">
+  <img src="docs/logo.svg" width="128" alt="saddlebag logo: a pouch with a ram's-horn buckle">
+</p>
 
-A set of agent skills for Claude Code and Codex, with one safety hook and an optional set of
-global rules. The skills are plain Markdown files. They work in any repo, and some of them
-are written for a TypeScript, React and Convex stack.
+<h1 align="center">saddlebag</h1>
 
-Read `START-HERE.md` to choose a skill for a task.
+<p align="center">
+  The skills I carry into every repo: agent skills for Claude Code and Codex,<br>
+  a git safety hook, and an optional set of global rules.
+</p>
+
+<p align="center">
+  <img alt="26 skills" src="https://img.shields.io/badge/skills-26-5fd3e0?style=flat-square&labelColor=070b12">
+  <img alt="Works with Claude Code" src="https://img.shields.io/badge/Claude%20Code-supported-a99cf2?style=flat-square&labelColor=070b12">
+  <img alt="Works with Codex" src="https://img.shields.io/badge/Codex-supported-7fd6a8?style=flat-square&labelColor=070b12">
+  <img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-e8c87e?style=flat-square&labelColor=070b12">
+</p>
+
+<p align="center">
+  <a href="#skills">Skills</a> ·
+  <a href="#install">Install</a> ·
+  <a href="#hooks">Hooks</a> ·
+  <a href="#related">Related</a>
+</p>
+
+The skills are plain Markdown files. They work in any repo, and some are written for a
+TypeScript, React and Convex stack. Most load on their own when a task matches their
+description. Read [`START-HERE.md`](START-HERE.md) to choose one by hand.
+
+## Quick start
+
+```sh
+git clone https://github.com/rk68/saddlebag.git && cd saddlebag
+node install.mjs --dry-run   # print what would change
+node install.mjs             # link the skills and register the hook
+```
 
 ## Skills
 
@@ -60,7 +89,7 @@ Each table reads "use it when you ...".
 | `herdr-md` | show a Markdown file or a Mermaid diagram in Herdr's viewer, with highlights |
 
 The `herdr` skills need the Herdr desktop app. `herdr-review` and `herdr-delegate` start agents
-from the `hc` templates in [rk68/herdr-config](https://github.com/rk68/herdr-config).
+from the `hc` templates in [corral](https://github.com/rk68/corral).
 `review-loop` needs the Paseo agent tools.
 
 ### Write prose
@@ -120,8 +149,15 @@ that lose work or touch production:
 When it blocks a command, the agent sees the reason and asks you to run the command yourself.
 Run its tests with `node --test hooks/git-guardrails.test.mjs`.
 
-## Licences
+## Related
 
-Some skills are adapted from open-source projects by Lauren Tan (pstack), Matt Pocock
-and Convex. `THIRD_PARTY.md` lists each source, its version and its licence. The licence
-texts are in `licenses/`.
+- [corral](https://github.com/rk68/corral): the Herdr mods, layout and agent templates that the
+  `herdr` skills drive.
+
+## Licence
+
+MIT. See [LICENSE](LICENSE).
+
+Some skills are adapted from open-source projects by Lauren Tan (pstack), Matt Pocock and
+Convex. [`THIRD_PARTY.md`](THIRD_PARTY.md) lists each source, its version and its licence, and the
+licence texts are in `licenses/`. Those parts keep their own licences.
