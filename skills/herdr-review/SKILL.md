@@ -5,7 +5,7 @@ description: Review a branch with one Codex (Astra) reviewer agent started throu
 
 # Herdr review
 
-One reviewer agent reads the branch. You verify each finding and fix the real ones once. Then you push one draft. This is the review process the user chose on 2026-11-13: one pass, one reviewer, no second round.
+One reviewer agent reads the branch. You verify each finding and fix the real ones once. Then you push one draft. This is the review process the user chose on 2026-11-13: one pass, one reviewer, no second round. A high merge risk adds a second reviewer and one re-review (2026-11-19).
 
 **Arguments:** $ARGUMENTS (optional: a PR number, focus areas, the name of a live reviewer to reuse)
 
@@ -24,6 +24,7 @@ Read the `herdr` skill first. It says to read `hc --skill`.
 2. If `gh pr view --json number,url` finds a PR, record it.
 3. Commit the uncommitted work locally with the **commit-pr** conventions. Record `HEAD_SHA`.
 4. Run the local CI checks (see `review-loop`, section "Local CI checks"). Run the slow ones as hc terminals (`hc run --bg --name ci ...`, then `hc wait ci`), so that you stay reachable.
+5. Run `node ~/.claude/skills/merge-risk/scripts/risk.mjs branch` and record the level. If it is high and the branch can split, split it first as the `merge-risk` skill says, and review each slice.
 
 ## 2. Start the reviewer with its task
 
@@ -73,12 +74,15 @@ Read `<scratchpad>/review-findings.md`. Do not rely on the one-line report.
 2. Group the real findings by root cause. Patch a one-off bug in a sound design. When two findings share a cause, or a patch adds a special case or a second source of truth, do the redesign check from `review-loop` step 4. A redesign that changes a shared contract is a stop point.
 3. Fix the findings yourself. Run the local CI checks. Commit locally with the **commit-pr** conventions.
 
-Do not start a second review round.
+Do not start a second review round, unless the merge risk is high. For high risk:
+
+- In step 2, also start a second reviewer from the `advisor` template (Claude) with the same task file, so two model families read the branch. Run the `blast-radius` skill on the riskiest reason while they read.
+- After the fixes, ask one reviewer to re-review only the diff since the first round. Fix its real findings once. Then finish.
 
 ## 5. Finish
 
 1. Run the full local CI checks one last time.
-2. Push once. If no PR exists, open a draft PR with the **commit-pr** conventions. If a PR exists, update its body to describe the whole branch.
+2. Push once. If no PR exists, open a draft PR with the **commit-pr** conventions. If a PR exists, update its body to describe the whole branch. Then run `node ~/.claude/skills/merge-risk/scripts/risk.mjs pr <number> --write`.
 3. Remove the reviewer: `hc kill review; hc rm review`. Keep it only if the user asked to reuse it.
 4. Report to the user: each finding with fixed, rejected (with evidence) or held for a decision, the head SHA and the PR link. For a UI change, publish the screenshots with the report.
 5. Leave the PR in draft.

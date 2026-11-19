@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img alt="26 skills" src="https://img.shields.io/badge/skills-26-5fd3e0?style=flat-square&labelColor=070b12">
+  <img alt="28 skills" src="https://img.shields.io/badge/skills-28-5fd3e0?style=flat-square&labelColor=070b12">
   <img alt="Works with Claude Code" src="https://img.shields.io/badge/Claude%20Code-supported-a99cf2?style=flat-square&labelColor=070b12">
   <img alt="Works with Codex" src="https://img.shields.io/badge/Codex-supported-7fd6a8?style=flat-square&labelColor=070b12">
   <img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-e8c87e?style=flat-square&labelColor=070b12">
@@ -66,6 +66,7 @@ Each table reads "use it when you ...".
 | `tdd` | fix a bug with a failing test first |
 | `diagnosing-bugs` | have a bug or a slowdown and do not know the cause |
 | `convex-verify` | need tests that prove a Convex function refuses the wrong user or organization |
+| `flaky-tests` | want flaky tests found from CI history, confirmed locally and fixed at the root cause (daily or weekly) |
 | `benchmark-checklist` | run a benchmark, or report a speedup or a regression you measured |
 
 ### Review and ship
@@ -75,6 +76,7 @@ Each table reads "use it when you ...".
 | `typescript-review` | review a TypeScript diff |
 | `convex-review` | review a diff that touches `convex/` |
 | `blast-radius` | want to know what a change could break outside the diff |
+| `merge-risk` | want a branch or PR scored and labelled by merge risk, with the review and split policy for that level |
 | `review-loop` | review a branch with two Paseo reviewer agents that fix their verified findings, then push once |
 | `commit-pr` | write a commit message, or open or update a pull request |
 

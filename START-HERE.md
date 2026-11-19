@@ -25,6 +25,8 @@ description. `improve-codebase-architecture` loads only when you type its name.
 | Find what a change could break outside the diff | `blast-radius` |
 | Check a benchmark number before you report it | `benchmark-checklist` |
 | Write a commit message or a PR | `commit-pr` |
+| Score how risky a PR is to merge, or split a risky one | `merge-risk` |
+| Find and fix flaky tests | `flaky-tests` |
 | Review and ship a branch | `review-loop` (Paseo) or `herdr-review` (Herdr) |
 | Run, message or wait on agents in Herdr | `herdr` |
 | Hand off, or ask an advisor or a committee, in Herdr | `herdr-delegate` |

@@ -56,10 +56,16 @@ question in your report. Open the PR without waiting for the answer.>
 <how it was verified: the changed test files, the commands you ran, manual steps>
 
 ## Risk
-<blast radius, migrations, anything to watch>
+<blast radius, migrations, anything to watch. The merge-risk block goes here too.>
 
 Closes <TICKET-ID>   <- only if a ticket exists
 ```
+
+---
+
+## Merge risk (every PR)
+
+Before you open a PR, run `node ~/.claude/skills/merge-risk/scripts/risk.mjs branch`. If the level is high and the change can split, split it into a stack first, as the `merge-risk` skill says. After `gh pr create`, run `node ~/.claude/skills/merge-risk/scripts/risk.mjs pr <number> --write`. That sets the `risk:<level>` label and the block in the Risk section.
 
 ---
 

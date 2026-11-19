@@ -5,7 +5,7 @@ description: Review a branch with two Paseo reviewer agents (Codex and Claude) t
 
 # Review loop
 
-Two reviewer agents read. You verify each finding and decide patch or redesign. The reviewers apply the fixes, one at a time. The loop ends when both reviewers answer `NO ACTIONABLE FINDINGS`, or after 3 rounds.
+Two reviewer agents read. You verify each finding and decide patch or redesign. The reviewers apply the fixes, one at a time. The loop ends when the reviewers answer `NO ACTIONABLE FINDINGS`, or at the round limit for the branch's merge risk.
 
 **Arguments:** $ARGUMENTS (optional: a PR number, focus areas, existing reviewer agent ids to reuse)
 
@@ -13,8 +13,9 @@ Two reviewer agents read. You verify each finding and decide patch or redesign. 
 
 - Each push starts paid CI runners. Commit locally after each round. Push once, at the end, after the local CI checks pass.
 - Only real defects block: correctness, broken contracts, data loss, security, command-query mixing (see `typescript-review` and `convex-review`), and test gaps that hide a real bug. No style or naming nits.
-- Round 1 reviews the full branch diff. Rounds 2 and 3 review only the diff since the previous round.
-- Stop after 3 rounds. Report the open findings to the user. Do not start a round 4.
+- The merge risk sets the size of the review (see the `merge-risk` skill): low is one round with only the Codex reviewer, medium is up to 3 rounds with both reviewers, and high is up to 4 rounds with both reviewers plus a `blast-radius` pass.
+- Round 1 reviews the full branch diff. Later rounds review only the diff since the previous round.
+- Stop at the round limit. Report the open findings to the user. Do not start another round.
 - Reviewers never edit during a review. They edit only in the fix step, one reviewer at a time, because they share one worktree.
 - Reviewers commit locally. They do not push, stash, reset or check out another branch, because they share one worktree with you, the git stash list is shared across worktrees, and step 6 owns the single push.
 
@@ -24,6 +25,7 @@ Two reviewer agents read. You verify each finding and decide patch or redesign. 
 2. If `gh pr view --json number,url` finds a PR, record it. If `git log @{u}..` shows commits that a reviewer did not see, include them. The PR is updated in step 6.
 3. Commit the uncommitted work locally with the **commit-pr** conventions. Record `ROUND_BASE=$BASE` and `HEAD_SHA`.
 4. Run the local CI checks (see "Local CI checks"). Fix failures before any reviewer starts.
+5. Run `node ~/.claude/skills/merge-risk/scripts/risk.mjs branch` and record the level. If it is high and the branch can split, split it first as the `merge-risk` skill says, and review each slice. If it is high, also run the `blast-radius` skill on its riskiest reason before round 1.
 
 Done when the branch is committed locally and the local CI checks pass.
 
@@ -101,16 +103,16 @@ Not changed: <finding> because <evidence>.
 Re-review only the diff <ROUND_BASE>..<HEAD_SHA>, with the same review rules: no edits during the review. Check the other reviewer's fixes too. Do not repeat findings listed under "Not changed". If none remain, reply with exactly: NO ACTIONABLE FINDINGS
 ```
 
-Go back to step 3. When both reviewers reply `NO ACTIONABLE FINDINGS`, or after round 3, go to step 6.
+Go back to step 3. When the reviewers reply `NO ACTIONABLE FINDINGS`, or at the round limit, go to step 6.
 
 ## 6. Finish
 
 1. Run the full local CI checks one last time.
-2. Push once. If no PR exists, open a draft PR with the **commit-pr** conventions. If a PR exists, update its body to describe the whole branch.
+2. Push once. If no PR exists, open a draft PR with the **commit-pr** conventions. If a PR exists, update its body to describe the whole branch. Then run `node ~/.claude/skills/merge-risk/scripts/risk.mjs pr <number> --write`.
 3. Archive both reviewer agents with `archive_agent`.
 4. Report to the user:
    - one row per round: head, findings, and for each one fixed, rejected or redesigned
-   - the open findings, if the loop stopped at round 3
+   - the merge risk and the open findings, if the loop stopped at the round limit
    - the PR link
 5. Leave the PR in draft.
 
