@@ -8,38 +8,67 @@ Read `START-HERE.md` to choose a skill for a task.
 
 ## Skills
 
+Each table reads "use it when you ...".
+
+### Write code
+
 | Skill | Use it when you |
 |---|---|
-| `benchmark-checklist` | run a benchmark, or report a speedup or a regression you measured |
-| `blast-radius` | want to know what a change could break outside the diff |
-| `codebase-design` | design a module interface or decide where a seam goes |
-| `commit-pr` | write a commit message, or open or update a pull request |
+| `typescript-development` | write or change TypeScript or TSX |
 | `convex-development` | write or change code under `convex/` |
 | `convex-docs` | are not sure a Convex API exists in the installed version |
-| `convex-review` | review a diff that touches `convex/` |
-| `convex-verify` | need tests that prove a Convex function refuses the wrong user or organization |
-| `diagnosing-bugs` | have a bug or a slowdown and do not know the cause |
+| `refactor` | change the structure of code without changing its behavior |
+| `monorepo-refactor` | plan and run a refactor of a feature area or several packages, as a proposal and then small PRs |
+| `prototype` | want throwaway code that answers a logic or UI design question |
+
+### Design and plan
+
+| Skill | Use it when you |
+|---|---|
+| `codebase-design` | design a module interface or decide where a seam goes |
+| `improve-codebase-architecture` | want a report of refactor candidates for a codebase (type its name to start it) |
 | `domain-modeling` | name domain terms, or write a `GLOSSARY.md` or an ADR |
 | `grilling` | want the agent to question your plan before you build it |
-| `herdr` | run and control agents and commands in the Herdr desktop app with `hc` |
-| `herdr-delegate` | hand a task to another agent, or ask an advisor or a committee, inside Herdr |
-| `herdr-md` | show a Markdown file or a Mermaid diagram in Herdr's viewer, with highlights |
-| `herdr-review` | review a branch with a Codex reviewer agent inside Herdr, fix its findings and push once |
-| `herdr-worktrees` | create, inspect and clean up git worktrees for agents inside Herdr |
-| `monorepo-refactor` | plan and run a refactor of a feature area or several packages, as a proposal and then small PRs |
-| `improve-codebase-architecture` | want a report of refactor candidates for a codebase (type its name to start it) |
-| `prototype` | want throwaway code that answers a logic or UI design question |
-| `refactor` | change the structure of code without changing its behavior |
-| `review-loop` | review a branch with two Paseo reviewer agents that fix their verified findings, then push once |
+
+### Test and debug
+
+| Skill | Use it when you |
+|---|---|
 | `tdd` | fix a bug with a failing test first |
-| `typescript-development` | write or change TypeScript or TSX |
+| `diagnosing-bugs` | have a bug or a slowdown and do not know the cause |
+| `convex-verify` | need tests that prove a Convex function refuses the wrong user or organization |
+| `benchmark-checklist` | run a benchmark, or report a speedup or a regression you measured |
+
+### Review and ship
+
+| Skill | Use it when you |
+|---|---|
 | `typescript-review` | review a TypeScript diff |
+| `convex-review` | review a diff that touches `convex/` |
+| `blast-radius` | want to know what a change could break outside the diff |
+| `review-loop` | review a branch with two Paseo reviewer agents that fix their verified findings, then push once |
+| `commit-pr` | write a commit message, or open or update a pull request |
+
+### Run agents in Herdr
+
+| Skill | Use it when you |
+|---|---|
+| `herdr` | run and control agents and commands in the Herdr desktop app with `hc` |
+| `herdr-delegate` | hand a task to another agent, or ask an advisor or a committee |
+| `herdr-review` | review a branch with a Codex reviewer agent, fix its findings and push once |
+| `herdr-worktrees` | create, inspect and clean up git worktrees for agents |
+| `herdr-md` | show a Markdown file or a Mermaid diagram in Herdr's viewer, with highlights |
+
+The `herdr` skills need the Herdr desktop app. `herdr-review` and `herdr-delegate` start agents
+from the `hc` templates in [rk68/herdr-config](https://github.com/rk68/herdr-config).
+`review-loop` needs the Paseo agent tools.
+
+### Write prose
+
+| Skill | Use it when you |
+|---|---|
 | `unslop` | edit a draft, README or PR body that reads as AI-written |
 | `writing-for-agents` | write a skill, an `AGENTS.md` or a `CLAUDE.md` |
-
-The `herdr` skills need the Herdr desktop app. `herdr-review` and `herdr-delegate` start agents from
-the `hc` templates in [rk68/herdr-config](https://github.com/rk68/herdr-config). `review-loop` needs
-the Paseo agent tools.
 
 ## Install
 
