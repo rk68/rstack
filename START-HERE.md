@@ -16,6 +16,7 @@ description. `improve-codebase-architecture` loads only when you type its name.
 | Fix a bug that has a cheap test target | `tdd` |
 | Find the cause of a hard bug or a slowdown | `diagnosing-bugs` |
 | Restructure code without changing behavior | `refactor` |
+| Refactor a feature area or several packages, as a proposal then small PRs | `monorepo-refactor` |
 | Design a module interface or place a seam | `codebase-design` |
 | Scan a codebase for refactor candidates | `improve-codebase-architecture` |
 | Name domain terms, write a glossary or an ADR | `domain-modeling` |
@@ -24,6 +25,11 @@ description. `improve-codebase-architecture` loads only when you type its name.
 | Find what a change could break outside the diff | `blast-radius` |
 | Check a benchmark number before you report it | `benchmark-checklist` |
 | Write a commit message or a PR | `commit-pr` |
+| Review and ship a branch | `review-loop` (Paseo) or `herdr-review` (Herdr) |
+| Run, message or wait on agents in Herdr | `herdr` |
+| Hand off, or ask an advisor or a committee, in Herdr | `herdr-delegate` |
+| Make or clean up worktrees for agents in Herdr | `herdr-worktrees` |
+| Show a Markdown file or diagram to the user in Herdr | `herdr-md` |
 | Remove AI tells from prose that people read | `unslop` |
 | Write a skill, `AGENTS.md` or `CLAUDE.md` | `writing-for-agents` |
 
@@ -37,5 +43,8 @@ description. `improve-codebase-architecture` loads only when you type its name.
 - `codebase-design` gives the design words (module, interface, depth, seam). The other design
   skills use it.
 - `grilling` asks the user questions about a plan. `prototype` builds code to answer a question.
-- `blast-radius` checks one risky change. It is not a full branch review.
+- `blast-radius` checks one risky change. It is not a full branch review. `review-loop` and
+  `herdr-review` review a whole branch and fix what they find.
+- `refactor` and `monorepo-refactor`: use `monorepo-refactor` when the change spans packages and needs a plan the user approves first.
+- Inside Herdr (`HC_TERMINAL_ID` is set), use the `herdr` skills to start other agents. Elsewhere, use the Agent tool or `review-loop`.
 - `unslop` edits prose for people. `writing-for-agents` writes documents that agents read.
