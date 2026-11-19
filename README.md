@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/logo.svg" width="128" alt="saddlebag logo: a pouch with a ram's-horn buckle">
+  <img src="docs/logo.svg" width="128" alt="rstack logo: three stacked layers with an r whose arm curls into a ram's horn">
 </p>
 
-<h1 align="center">saddlebag</h1>
+<h1 align="center">rstack</h1>
 
 <p align="center">
   The skills I carry into every repo: agent skills for Claude Code and Codex,<br>
@@ -30,7 +30,7 @@ description. Read [`START-HERE.md`](START-HERE.md) to choose one by hand.
 ## Quick start
 
 ```sh
-git clone https://github.com/rk68/saddlebag.git && cd saddlebag
+git clone https://github.com/rk68/rstack.git && cd rstack
 node install.mjs --dry-run   # print what would change
 node install.mjs             # link the skills and register the hook
 ```
